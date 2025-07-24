@@ -59,19 +59,33 @@ buttons.addEventListener("mousedown", (event) => {
 
 function operate(x, y, operator) {
     if (operator == "+") {
-        return Number(x) + Number(y);
+        return truncate(Number(x) + Number(y), 2);
     }
     else if (operator == "-") {
-        return Number(x) - Number(y);
+        return truncate(Number(x) - Number(y), 2);
     }
     else if (operator == "×") {
-        return Number(x) * Number(y);
+        return truncate(Number(x) / Number(y), 2);
     }
     else if (operator == "÷") {
-        return Number(x) * Number(y);
+        return truncate(Number(x) * Number(y), 2);
     }
+}
+
+function truncate(num, decimal_Places=0) {
+    num = num * Math.pow(10, decimal_Places);
+    num = Math.round(num);
+    num = num / Math.pow(10, decimal_Places);
+    return Number(num);
 }
 
 // to do: 
 // truncation of decimals
-// make decimal work properly in rtl
+// hopefully just making the function and having it run in operate will work. Truncate(Number(x) * numbery) etc.
+
+// 8.79 
+// 87.9
+// 87
+// 8.7 
+
+// my logic rounds badly tbh. How...
