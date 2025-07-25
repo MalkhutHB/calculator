@@ -24,7 +24,7 @@ buttons.addEventListener("mousedown", (event) => {
         showingResult = false;
     }
     else if (operation.includes(character)) {
-        if (!input1) input1 = Number(screenNumber);
+        if (!input1 && !Number.isNaN(input1)) input1 = Number(screenNumber);
         else if (!operation.includes(screen.textContent)) input1 = operate(input1, screenNumber, operator); // negatives!!
         screen.textContent = character;
         screenNumber = "";
@@ -33,6 +33,7 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (character == "=") {
         if (input1 || input1 == 0) screen.textContent = operate(input1, screenNumber, operator);
+        else if (Number.isNaN(input1)) screen.textContent = "error";
         else screen.textContent = "";
         screenNumber = screen.textContent;
         result = Number(screen.textContent);
@@ -113,5 +114,7 @@ function truncate(num, decimal_Places=0) {
 // shadow at the right side on overflow? Same color as bg so it only shows on the number?
 //
 // negative numbers display incorrectly because rtl
-
+//
 // delete not working on negative result, ig cuz "-" is not valid and it checks only the first char
+
+// fix too many decimals issue. Should just display an error if NaN or something           fixed
