@@ -17,7 +17,7 @@ buttons.addEventListener("mousedown", (event) => {
     const character = button.textContent;
     if (valid.includes(character)) {
         if (operation.includes(screen.textContent) && screen.textContent != "") screen.textContent = "";
-        else if (screen.textContent == "0") screen.textContent = ""; // this def wont work with decimals cuz you need leading 0          EDIT: SHOULLD WORK NOW!!!
+        else if (screen.textContent == "0") screen.textContent = ""; 
         else if (showingResult) {screenNumber = screen.textContent = "";}
         screen.textContent += button.textContent;
         screenNumber += button.textContent;
@@ -54,6 +54,7 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (character == ".") {
         if (operation.includes(screen.textContent)) screen.textContent = "";
+        else if (showingResult) {screenNumber = screen.textContent = "";}
         let tempNumber = screen.textContent;
         tempNumber += "\u202A.\u202C";
         screen.textContent = tempNumber;
