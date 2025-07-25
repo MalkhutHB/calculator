@@ -58,6 +58,9 @@ buttons.addEventListener("mousedown", (event) => {
     console.log("ScreenText: " + screen.textContent + ", ScreenNumber: " + screenNumber);
 })
 
+buttons.addEventListener("mousedown", (event) => {event.target.classList.add("pressed")});
+buttons.addEventListener("mouseup", (event) => {event.target.classList.remove("pressed")});
+
 
 function operate(x, y, operator) {
     if (operator == "+") {
