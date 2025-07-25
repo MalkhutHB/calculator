@@ -25,7 +25,7 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (operation.includes(character)) {
         if (!input1) input1 = Number(screenNumber);
-        else input1 = operate(input1, screenNumber, operator);
+        else if (!operation.includes(screen.textContent)) input1 = operate(input1, screenNumber, operator);
         screen.textContent = character;
         screenNumber = "";
         operator = character;
