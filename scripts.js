@@ -16,11 +16,12 @@ buttons.addEventListener("mousedown", (event) => {
     const button = event.target;
     const character = button.textContent;
     if (valid.includes(character)) {
-        if (operation.includes(screen.textContent)) screen.textContent = "";
+        if (operation.includes(screen.textContent) && screen.textContent != "") screen.textContent = "";
         else if (screen.textContent == "0") screen.textContent = ""; // this def wont work with decimals cuz you need leading 0          EDIT: SHOULLD WORK NOW!!!
-        else if (showingResult) {screenNumber = screen.textContent = ""; showingResult = false;}
+        else if (showingResult) {screenNumber = screen.textContent = "";}
         screen.textContent += button.textContent;
         screenNumber += button.textContent;
+        showingResult = false;
     }
     else if (operation.includes(character)) {
         if (!input1) input1 = Number(screenNumber);
@@ -28,6 +29,7 @@ buttons.addEventListener("mousedown", (event) => {
         screen.textContent = character;
         screenNumber = "";
         operator = character;
+        showingResult = false;
     }
     else if (character == "=") {
         if (input1) screen.textContent = operate(input1, screenNumber, operator);
@@ -40,11 +42,13 @@ buttons.addEventListener("mousedown", (event) => {
     else if (character == "AC") {
         screenNumber = screen.textContent = "";
         input1 = "";
+        showingResult = false;
     }
     else if (character == "ANS") {
         if (operation.includes(screen.textContent)) screenNumber = screen.textContent = "";
         else if (screen.textContent == "0") screenNumber = screen.textContent = "";
         screenNumber = screen.textContent += result;
+        showingResult = false;
     }
     else if (character == ".") {
         if (operation.includes(screen.textContent)) screen.textContent = "";
@@ -52,6 +56,7 @@ buttons.addEventListener("mousedown", (event) => {
         tempNumber += "\u202A.\u202C";
         screen.textContent = tempNumber;
         screenNumber += ".";
+        showingResult = false;
     }
 
     secondaryScreen.textContent = input1;
