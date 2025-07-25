@@ -58,6 +58,8 @@ buttons.addEventListener("mousedown", (event) => {
     console.log("ScreenText: " + screen.textContent + ", ScreenNumber: " + screenNumber);
 })
 
+buttons.addEventListener("touchstart", (event) => {event.target.classList.add("pressed")});
+buttons.addEventListener("touchend", (event) => {event.target.classList.remove("pressed")});
 buttons.addEventListener("mousedown", (event) => {event.target.classList.add("pressed")});
 buttons.addEventListener("mouseup", (event) => {event.target.classList.remove("pressed")});
 
