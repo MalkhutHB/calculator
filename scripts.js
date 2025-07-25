@@ -10,14 +10,15 @@ let result;
 let operator;
 
 let screenNumber = ""; // change the whole  program to use screenNumber instead of screen.textcontent 
+let showingResult = false;
 
 buttons.addEventListener("mousedown", (event) => {
     const button = event.target;
     const character = button.textContent;
-    let operating = false;
     if (valid.includes(character)) {
         if (operation.includes(screen.textContent)) screen.textContent = "";
         else if (screen.textContent == "0") screen.textContent = ""; // this def wont work with decimals cuz you need leading 0          EDIT: SHOULLD WORK NOW!!!
+        else if (showingResult) {screenNumber = screen.textContent = ""; showingResult = false;}
         screen.textContent += button.textContent;
         screenNumber += button.textContent;
     }
@@ -34,6 +35,7 @@ buttons.addEventListener("mousedown", (event) => {
         screenNumber = screen.textContent;
         result = Number(screen.textContent);
         input1 = "";
+        showingResult = true;
     }
     else if (character == "AC") {
         screenNumber = screen.textContent = "";
