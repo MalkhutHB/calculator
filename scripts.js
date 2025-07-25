@@ -65,10 +65,10 @@ function operate(x, y, operator) {
         return truncate(Number(x) - Number(y), 2);
     }
     else if (operator == "×") {
-        return truncate(Number(x) / Number(y), 2);
+        return truncate(Number(x) * Number(y), 2);
     }
     else if (operator == "÷") {
-        return truncate(Number(x) * Number(y), 2);
+        return truncate(Number(x) / Number(y), 2);
     }
 }
 
