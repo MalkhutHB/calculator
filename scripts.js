@@ -60,6 +60,13 @@ buttons.addEventListener("mousedown", (event) => {
         screenNumber += ".";
         showingResult = false;
     }
+    else if (character == "DEL") {
+        if (!valid.includes(screen.textContent.charAt(0)) || screen.textContent.length == 0) return;
+        if (screenNumber.at(-1) == ".") screen.textContent = screen.textContent.slice(0, -3);
+        else screen.textContent = screen.textContent.slice(0, -1);
+        screenNumber = screenNumber.slice(0, -1);
+        
+    }
 
     secondaryScreen.textContent = input1;
     console.log("ScreenText: " + screen.textContent + ", ScreenNumber: " + screenNumber);
@@ -95,12 +102,4 @@ function truncate(num, decimal_Places=0) {
 }
 
 // to do: 
-// truncation of decimals
-// hopefully just making the function and having it run in operate will work. Truncate(Number(x) * numbery) etc.
-
-// 8.79 
-// 87.9
-// 87
-// 8.7 
-
-// my logic rounds badly tbh. How...
+// shadow at the right side on overflow? Same color as bg so it only shows on the number?
