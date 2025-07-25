@@ -63,6 +63,13 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (character == "DEL") {
         if (!valid.includes(screen.textContent.charAt(0)) || screen.textContent.length == 0) return;
+        else if (showingResult) { // basically just AC 
+            screenNumber = screen.textContent = "";
+            input1 = "";
+            showingResult = false;
+            return;
+        }
+
         if (screenNumber.at(-1) == ".") screen.textContent = screen.textContent.slice(0, -3);
         else screen.textContent = screen.textContent.slice(0, -1);
         screenNumber = screenNumber.slice(0, -1);
