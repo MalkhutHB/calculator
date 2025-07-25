@@ -45,6 +45,8 @@ buttons.addEventListener("mousedown", (event) => {
         showingResult = false;
     }
     else if (character == "ANS") {
+        if (!result || !valid.includes(result.toString().charAt(0))) return;
+
         if (operation.includes(screen.textContent)) screenNumber = screen.textContent = "";
         else if (screen.textContent == "0") screenNumber = screen.textContent = "";
         screenNumber = screen.textContent += result;
@@ -80,6 +82,7 @@ function operate(x, y, operator) {
         return truncate(Number(x) * Number(y), 2);
     }
     else if (operator == "÷") {
+        if (y == 0) return "error"; 
         return truncate(Number(x) / Number(y), 2);
     }
 }
