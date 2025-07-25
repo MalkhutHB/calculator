@@ -32,10 +32,18 @@ buttons.addEventListener("mousedown", (event) => {
         showingResult = false;
     }
     else if (character == "=") {
-        if (input1 || input1 == 0) screen.textContent = operate(input1, screenNumber, operator);
+        let answer;
+        if (input1 || input1 == 0) {
+            answer = operate(input1, screenNumber, operator);
+            if (answer >= 0) screen.textContent = answer;
+            else {
+                screen.textContent = answer * -1;
+                screen.textContent += "-";
+            }
+        }
         else if (Number.isNaN(input1)) screen.textContent = "error";
         else screen.textContent = "";
-        screenNumber = screen.textContent;
+        screenNumber = answer;
         result = Number(screen.textContent);
         input1 = "";
         showingResult = true;
