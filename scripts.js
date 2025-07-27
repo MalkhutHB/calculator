@@ -162,10 +162,10 @@ function exponentLength(num) {
 
 // keyboard support:
 
-document.addEventListener("keydown", (event) => { // need backspace period and enter
+document.addEventListener("keydown", (event) => { 
     const button = document.querySelector(`.${event.code}`);
     if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
-    else if (event.code = "ShiftLeft") { // shift buttons I need: * +, also this logic is wrong, want to add a second event listener with this function inside of it
+    else if (event.code = "ShiftLeft") { 
         // temporarily disable equal key and 8
         const equalButton = document.querySelector(".Equal");
         const eightButton = document.querySelector(".Digit8");
@@ -199,7 +199,6 @@ document.addEventListener("keydown", (event) => { // need backspace period and e
         });
     }
     else console.log(event.code);
-    //else if () 
         
 
     document.addEventListener("keyup", (event2) => {
@@ -208,9 +207,5 @@ document.addEventListener("keydown", (event) => { // need backspace period and e
 })
 // to do: 
 // I don't like the behavior when hitting = and a number is on screen, or an operation. 
-//
-// keyboard support...
-//
-// idea: make buttons only input on buttonup, this way with keyboard support you can't spam by holding a key. Eh, idk though
 // 
 // pink ver: #c694cd
