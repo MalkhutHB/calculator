@@ -36,7 +36,7 @@ buttons.addEventListener("mousedown", (event) => {
         if (input1 || input1 == 0) {
             answer = operate(input1, screenNumber, operator);
             if (answer.toString().length > 7) screen.textContent = condense(answer); 
-            else if (answer >= 0) screen.textContent = answer;
+            else if (answer >= 0 || answer == "error") screen.textContent = answer;
             else {
                 screen.textContent = answer * -1;
                 screen.textContent += "-";
@@ -153,9 +153,5 @@ function exponentLength(num) {
 
 // to do: 
 // if you don't mouseup on the button (ie, click and drag, let go somewhere else) button stays pressed in
-// 
-// div 0 is giving "-NaN" instead of "error"
-
-
-
+//
 // pink ver: #c694cd
