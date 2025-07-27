@@ -33,9 +33,11 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (character == "=") {
         let answer;
-        if (input1 || input1 == 0) {
+        let shouldRespond = true;
+        if (operation.includes(screen.textContent)) shouldRespond = false;
+        else if (input1 || input1 === 0 || input1 === "0") {
             answer = operate(input1, screenNumber, operator);
-            if (answer.toString().length > 7) screen.textContent = condense(answer); 
+            if (answer && answer.toString().length > 7) screen.textContent = condense(answer); 
             else if (answer >= 0 || answer == "error") screen.textContent = answer;
             else {
                 screen.textContent = answer * -1;
@@ -44,10 +46,14 @@ buttons.addEventListener("mousedown", (event) => {
         }
         else if (Number.isNaN(input1)) screen.textContent = "error";
         else screen.textContent = "";
-        screenNumber = answer;
-        result = Number(screen.textContent);
-        input1 = "";
-        showingResult = true;
+
+        if (shouldRespond) {
+            screenNumber = answer;
+            result = Number(screen.textContent);
+            input1 = "";
+            showingResult = true;
+        }
+        
     }
     else if (character == "AC") {
         screenNumber = screen.textContent = "";
