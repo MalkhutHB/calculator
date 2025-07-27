@@ -165,16 +165,52 @@ function exponentLength(num) {
 document.addEventListener("keydown", (event) => { // need backspace period and enter
     const button = document.querySelector(`.${event.code}`);
     if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+    else if (event.code = "ShiftLeft") { // shift buttons I need: * +, also this logic is wrong, want to add a second event listener with this function inside of it
+        // temporarily disable equal key and 8
+        const equalButton = document.querySelector(".Equal");
+        const eightButton = document.querySelector(".Digit8");
+        if (equalButton) equalButton.classList.remove("Equal");
+        if (eightButton) eightButton.classList.remove("Digit8");
+
+        function shiftLogic(shiftEvent) {
+            let shiftButton;
+            if (shiftEvent.code == "Equal") {
+                shiftButton = document.querySelector(".Add");
+                shiftButton.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+            }
+            else if (shiftEvent.code == "Digit8") {
+                shiftButton = document.querySelector(".multiply");
+                shiftButton.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+            }
+
+            document.addEventListener("keyup", (shiftEvent2) => {
+                if (shiftEvent.code == shiftEvent2.code) shiftButton.dispatchEvent(new CustomEvent("mouseup", {bubbles:true}));
+            })
+        };
+
+        document.addEventListener("keydown", shiftLogic);
+        document.addEventListener("keyup", (upEvent) => {
+            if (upEvent.code == "ShiftLeft") {
+                document.removeEventListener("keydown", shiftLogic);
+                if (equalButton) equalButton.classList.add("Equal");
+                if (eightButton) eightButton.classList.add("Digit8");
+                console.log("removed?");
+            }
+        });
+    }
+    else console.log(event.code);
     //else if () 
         
 
     document.addEventListener("keyup", (event2) => {
-        if (event.code == event2.code) button.dispatchEvent(new CustomEvent("mouseup", {bubbles:true}));
+        if (event.code == event2.code) if (button) button.dispatchEvent(new CustomEvent("mouseup", {bubbles:true}));
     })
 })
 // to do: 
 // I don't like the behavior when hitting = and a number is on screen, or an operation. 
 //
 // keyboard support...
+//
+// idea: make buttons only input on buttonup, this way with keyboard support you can't spam by holding a key. Eh, idk though
 // 
 // pink ver: #c694cd
