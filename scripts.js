@@ -35,7 +35,8 @@ buttons.addEventListener("mousedown", (event) => {
         let answer;
         if (input1 || input1 == 0) {
             answer = operate(input1, screenNumber, operator);
-            if (answer >= 0) screen.textContent = answer;
+            if (answer.toString().length > 7) screen.textContent = condense(answer); // can run a function on answer to sci note it
+            else if (answer >= 0) screen.textContent = answer;
             else {
                 screen.textContent = answer * -1;
                 screen.textContent += "-";
@@ -78,14 +79,14 @@ buttons.addEventListener("mousedown", (event) => {
             showingResult = false;
             return;
         }
-
         if (screenNumber.at(-1) == ".") screen.textContent = screen.textContent.slice(0, -3);
         else screen.textContent = screen.textContent.slice(0, -1);
         screenNumber = screenNumber.slice(0, -1);
         
     }
 
-    secondaryScreen.textContent = input1;
+    if (input1 && input1.toString().length > 7) secondaryScreen.textContent = condense(input1);
+    else secondaryScreen.textContent = input1;
     console.log("ScreenText: " + screen.textContent + ", ScreenNumber: " + screenNumber);
 })
 
@@ -118,11 +119,50 @@ function truncate(num, decimal_Places=0) {
     return Number(num);
 }
 
-// to do: 
-// shadow at the right side on overflow? Same color as bg so it only shows on the number?
-//
-// negative numbers display incorrectly because rtl
-//
-// delete not working on negative result, ig cuz "-" is not valid and it checks only the first char
+function condense(num) {
+    const firstNum = num;
+    let accuracy = 3;
+    num = num.toExponential();
+    let preNum = undefined;
+    while (num.length > 8 && accuracy > 1 && !(exponentLength(num) > 2)) {
+        preNum = num.toString();
+        num = Number(num).toExponential(accuracy--); 
+    }
+    if (exponentLength(num) > 2) num = "overflow";
 
-// fix too many decimals issue. Should just display an error if NaN or something           fixed
+    if ((num == "overflow" && preNum) || Number(firstNum) == Number(preNum)) {
+        let diff = preNum.length - 8;
+        let decimalIndex = preNum.indexOf(".");
+        //let negativeIndexOfE = preNum.indexOf("e")
+        let deletionStart = preNum.length - (2 + exponentLength(preNum) + diff); // index -4 is right before e+00
+
+        if (decimalIndex < 0 || decimalIndex > deletionStart) return num; 
+
+        preNum = preNum.slice(0, deletionStart) + "" + preNum.slice(deletionStart + diff);
+        if (preNum.length - preNum.indexOf("+") > 3) return num;
+        return Number(preNum).toExponential(); // return as string because Number() would remove exponential form
+    }
+    return num;
+
+    // want to overflow at e100 and only fit up to 3 decimals in the significand 
+}
+
+function exponentLength(num) {
+    return -1 + (num.toString().length - num.toString().indexOf("+"));
+}
+
+// let num = 9.999e+99;
+// console.log(condense(num));
+
+
+
+// to do: 
+// sci notation and/or overflow error for when result doesn't fit screen,    note: currently fits 7 numbers
+//
+// if you don't mouseup on the button (ie, click and drag, let go somewhere else) button stays pressed in
+// 
+// div 0 is giving "-NaN" instead of "error"
+
+
+
+// pink ver: #c694cd
