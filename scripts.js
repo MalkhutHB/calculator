@@ -164,9 +164,7 @@ function exponentLength(num) {
 
 document.addEventListener("keydown", (event) => { // need backspace period and enter
     const button = document.querySelector(`.${event.code}`);
-    if (valid.includes(`${event.key}`) || `${event.key}` == `.` || `${event.key}` == `=`) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
-    else if (operation.includes(`${event.key}`)) button.dispatchEvent(new CustomEvent("mousedown"), {bubble:true}); // clearly redundant
-    else if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+    if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
     //else if () 
         
 
