@@ -2,7 +2,7 @@ const buttons = document.querySelector(".button-section");
 const screen = document.querySelector(".screen");
 const secondaryScreen = document.querySelector(".secondary-screen");
 const valid = "0123456789";
-const operation = "+-÷×"
+const operation = "+-÷×/*"
 
 let input1;
 let input2;
@@ -156,7 +156,27 @@ function exponentLength(num) {
 
 
 
+
+
+
+
+// keyboard support:
+
+document.addEventListener("keydown", (event) => { // need backspace period and enter
+    const button = document.querySelector(`.${event.code}`);
+    if (valid.includes(`${event.key}`) || `${event.key}` == `.` || `${event.key}` == `=`) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+    else if (operation.includes(`${event.key}`)) button.dispatchEvent(new CustomEvent("mousedown"), {bubble:true}); // clearly redundant
+    else if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
+    //else if () 
+        
+
+    document.addEventListener("keyup", (event2) => {
+        if (event.code == event2.code) button.dispatchEvent(new CustomEvent("mouseup", {bubbles:true}));
+    })
+})
 // to do: 
-// if you don't mouseup on the button (ie, click and drag, let go somewhere else) button stays pressed in
+// I don't like the behavior when hitting = and a number is on screen, or an operation. 
 //
+// keyboard support...
+// 
 // pink ver: #c694cd
