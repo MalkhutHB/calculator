@@ -1,7 +1,7 @@
 const buttons = document.querySelector(".button-section");
 const screen = document.querySelector(".screen");
 const secondaryScreen = document.querySelector(".secondary-screen");
-const valid = "0123456789";
+const valid = "0123456789\u202A";
 const operation = "+-÷×/*"
 
 let input1;
