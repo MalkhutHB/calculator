@@ -9,7 +9,7 @@ let input2;
 let result;
 let operator;
 
-let screenNumber = ""; // change the whole  program to use screenNumber instead of screen.textcontent 
+let screenNumber = ""; 
 let showingResult = false;
 
 buttons.addEventListener("mousedown", (event) => {
@@ -25,7 +25,7 @@ buttons.addEventListener("mousedown", (event) => {
     }
     else if (operation.includes(character)) {
         if (!input1 && !Number.isNaN(input1)) input1 = Number(screenNumber);
-        else if (!operation.includes(screen.textContent)) input1 = operate(input1, screenNumber, operator); // negatives!!
+        else if (!operation.includes(screen.textContent)) input1 = operate(input1, screenNumber, operator); 
         screen.textContent = character;
         screenNumber = "";
         operator = character;
@@ -35,7 +35,7 @@ buttons.addEventListener("mousedown", (event) => {
         let answer;
         if (input1 || input1 == 0) {
             answer = operate(input1, screenNumber, operator);
-            if (answer.toString().length > 7) screen.textContent = condense(answer); // can run a function on answer to sci note it
+            if (answer.toString().length > 7) screen.textContent = condense(answer); 
             else if (answer >= 0) screen.textContent = answer;
             else {
                 screen.textContent = answer * -1;
@@ -119,6 +119,7 @@ function truncate(num, decimal_Places=0) {
     return Number(num);
 }
 
+// want function to overflow at e100 and only fit up to 3 decimals in the significand / mantissa
 function condense(num) {
     const firstNum = num;
     let accuracy = 3;
@@ -133,32 +134,24 @@ function condense(num) {
     if ((num == "overflow" && preNum) || Number(firstNum) == Number(preNum)) {
         let diff = preNum.length - 8;
         let decimalIndex = preNum.indexOf(".");
-        //let negativeIndexOfE = preNum.indexOf("e")
-        let deletionStart = preNum.length - (2 + exponentLength(preNum) + diff); // index -4 is right before e+00
+        let deletionStart = preNum.length - (2 + exponentLength(preNum) + diff); // index 2 + exponentLength is right before e+00
 
         if (decimalIndex < 0 || decimalIndex > deletionStart) return num; 
 
         preNum = preNum.slice(0, deletionStart) + "" + preNum.slice(deletionStart + diff);
         if (preNum.length - preNum.indexOf("+") > 3) return num;
-        return Number(preNum).toExponential(); // return as string because Number() would remove exponential form
+        return Number(preNum).toExponential(); 
     }
     return num;
-
-    // want to overflow at e100 and only fit up to 3 decimals in the significand 
-}
+} 
 
 function exponentLength(num) {
     return -1 + (num.toString().length - num.toString().indexOf("+"));
 }
 
-// let num = 9.999e+99;
-// console.log(condense(num));
-
 
 
 // to do: 
-// sci notation and/or overflow error for when result doesn't fit screen,    note: currently fits 7 numbers
-//
 // if you don't mouseup on the button (ie, click and drag, let go somewhere else) button stays pressed in
 // 
 // div 0 is giving "-NaN" instead of "error"
