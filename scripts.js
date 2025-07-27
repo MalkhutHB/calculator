@@ -44,8 +44,8 @@ buttons.addEventListener("mousedown", (event) => {
                 screen.textContent += "-";
             }
         }
-        else if (Number.isNaN(input1)) screen.textContent = "error";
-        else screen.textContent = "";
+        else if (Number.isNaN(input1)) screen.textContent = "error"; 
+        else answer = screenNumber;
 
         if (shouldRespond) {
             screenNumber = answer;
