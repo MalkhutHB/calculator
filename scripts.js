@@ -177,7 +177,7 @@ function exponentLength(num) {
 document.addEventListener("keydown", (event) => { 
     const button = document.querySelector(`.${event.code}`);
     if (button) button.dispatchEvent(new CustomEvent("mousedown", {bubbles:true}));
-    else if (event.code = "ShiftLeft") { 
+    else if (event.code == "ShiftLeft") { 
         // temporarily disable equal key and 8
         const equalButton = document.querySelector(".Equal");
         const eightButton = document.querySelector(".Digit8");
@@ -219,8 +219,6 @@ document.addEventListener("keydown", (event) => {
 })
 // to do: 
 // can do operations with 'overflow', or 'error'. It'll just return the same thing but yeah, could maybe disable operation buttons
-//
-// when i press any random kb button (not a functional one) the shift operation for keyboard support enables somehow and is sticky
 // 
 // Sometimes on result the sci notation will have extra 0 decimals, but when I hit ans later that significand is gone. 
 // Same number anyways but that's something
