@@ -2,8 +2,11 @@
 
 Hello, this is my calculator that I've made for the odin project. 
 
-The thing I worked most on was probably the scientific notation. Other than that there 
-were just a million little bugs and quirks to troubleshoot. 
+The things I worked most on was probably the scientific notation and keyboard support. Other 
+than that there were just a million little bugs and quirks to troubleshoot. 
+
+The keyboard works with numpad keys and normal number keys. `+` and `*` on they number row
+work when holding shift like you normally would in order to type them. 
 
 For the design, I was inspired by a calculator design I saw online that had keys like the 
 iPad's folio keyboard, which is kind of a weird fabric keyboard with an interesting design. 
