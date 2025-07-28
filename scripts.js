@@ -71,11 +71,15 @@ buttons.addEventListener("mousedown", (event) => {
     else if (character == ".") {
         if (operation.includes(screen.textContent)) screen.textContent = "";
         else if (showingResult) {screenNumber = screen.textContent = "";}
-        let tempNumber = screen.textContent;
-        tempNumber += "\u202A.\u202C";
-        screen.textContent = tempNumber;
-        screenNumber += ".";
-        showingResult = false;
+
+        if (screenNumber.includes("."));
+        else {
+            let tempNumber = screen.textContent;
+            tempNumber += "\u202A.\u202C";
+            screen.textContent = tempNumber;
+            screenNumber += ".";
+            showingResult = false;
+        }
     }
     else if (character == "DEL") {
         if (!valid.includes(screen.textContent.charAt(0)) || screen.textContent.length == 0) return;
