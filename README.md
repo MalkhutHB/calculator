@@ -22,4 +22,4 @@ on my own. There were so many cool calculator designs that seemed possible so I 
 back to this and try different things in the future.  
 
 Calculator I was inspired by: 
-https://i.pinimg.com/1200x/62/0f/ea/620fea3a0644cea4b3599374aeb72255.jpg
+https://dribbble.com/shots/10269957-Simple-Calculator
