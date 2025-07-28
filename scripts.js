@@ -51,6 +51,7 @@ buttons.addEventListener("mousedown", (event) => {
         if (shouldRespond) {
             screenNumber = answer;
             result = Number(screen.textContent);
+            if (result && result.toString().length > 7) result = condense(result);
             input1 = "";
             showingResult = true;
         }
@@ -217,6 +218,11 @@ document.addEventListener("keydown", (event) => {
     })
 })
 // to do: 
-// I don't like the behavior when hitting = and a number is on screen, or an operation. 
+// can do operations with 'overflow', or 'error'. It'll just return the same thing but yeah, could maybe disable operation buttons
+//
+// when i press any random kb button (not a functional one) the shift operation for keyboard support enables somehow and is sticky
+// 
+// Sometimes on result the sci notation will have extra 0 decimals, but when I hit ans later that significand is gone. 
+// Same number anyways but that's something
 // 
 // pink ver: #c694cd
