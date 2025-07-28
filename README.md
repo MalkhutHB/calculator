@@ -21,5 +21,8 @@ the project's design and and code I tried to stay away from chatGPT and focus on
 on my own. There were so many cool calculator designs that seemed possible so I want to come 
 back to this and try different things in the future.  
 
+Live Demo:
+https://malkhuthb.github.io/calculator/
+
 Calculator I was inspired by: 
 https://dribbble.com/shots/10269957-Simple-Calculator
